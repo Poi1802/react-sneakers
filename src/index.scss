@@ -1,0 +1,32 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  background-color: #e7f6ff;
+}
+
+.wrapper {
+  max-width: 1080px;
+  margin: 0 auto;
+  margin-top: 85px;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+.content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  h3 {
+    margin: 0;
+  }
+}
