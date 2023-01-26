@@ -645,6 +645,11 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+macro-css@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/macro-css/-/macro-css-1.0.5.tgz#0e310daf7da1b485e6077ebb445cb005f0ccf776"
+  integrity sha512-2DctzCqUhoKRDwLxPYHHak6KHIB7pWgeWbtsPF+TJUYlrWtE1+/J1//Jrrim3UL5aeaZpOQ0V57THmIwHrtbkg==
+
 magic-string@^0.27.0:
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.27.0.tgz#e4a3413b4bab6d98d2becffd48b4a257effdbbf3"
