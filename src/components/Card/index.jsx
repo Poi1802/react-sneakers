@@ -2,12 +2,17 @@ import React from "react";
 
 import { card, favorite, button } from "./Card.module.scss";
 
-const Card = ({ title, price, imageUrl }) => {
+const Card = ({ title, price, imageUrl, onPlus, onCheck }) => {
   const [checked, setChecked] = React.useState(false);
   const [liked, setLiked] = React.useState(false);
 
-  const onSelectCheck = () => {
+  const onClickPlus = () => {
     setChecked(!checked);
+    if (!checked) {
+      onPlus({ title, price, imageUrl });
+    } else {
+      onCheck({ title });
+    }
   };
   const onSelectLike = () => {
     setLiked(!liked);
@@ -37,7 +42,7 @@ const Card = ({ title, price, imageUrl }) => {
         </div>
         <img
           className={button}
-          onClick={onSelectCheck}
+          onClick={onClickPlus}
           src={checked ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
           alt=""
         />

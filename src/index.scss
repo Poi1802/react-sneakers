@@ -1,3 +1,6 @@
+html {
+  position: relative;
+}
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -19,7 +22,6 @@ body {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
   border-radius: 20px;
   min-height: 100vh;
-  position: relative;
 }
 
 header {
@@ -72,112 +74,5 @@ header {
     border-radius: 10px;
     min-width: 250px;
     min-height: 44px;
-  }
-}
-
-.overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-.drawer {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  right: -100px;
-  width: 385px;
-  height: 100vh;
-  z-index: 1;
-  background: #ffffff;
-  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
-
-  .items {
-    overflow: auto;
-  }
-  .card {
-    margin-inline: 30px;
-    border: 1px solid #f3f3f3;
-    border-radius: 20px;
-  }
-  .removeBtn {
-    opacity: 0.5;
-    cursor: pointer;
-    transition: 0.3s;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-  h2 {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 29px;
-    margin: 30px 0;
-    margin-left: 30px;
-  }
-  p {
-    margin: 0;
-    margin-bottom: 8px;
-  }
-  .cartTotalBlock {
-    margin-top: auto;
-    margin-bottom: 30px;
-    ul {
-      li {
-        display: flex;
-        justify-content: space-between;
-        div {
-          flex: 1;
-          border-bottom: 1px dashed #dfdfdf;
-          position: relative;
-          top: -3px;
-          margin: 0 8px;
-        }
-        span {
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 19px;
-        }
-      }
-    }
-    .greenButton {
-      margin-top: 24px;
-      width: 100%;
-      height: 55px;
-      background: #9dd558;
-      color: #ffffff;
-      border-radius: 18px;
-      border: none;
-      position: relative;
-      cursor: pointer;
-      transition: 0.3s;
-
-      &:hover {
-        background-color: lighten(#9dd558, 5%);
-        border: 1px solid rgb(216, 214, 214);
-        svg {
-          transform: translateX(10px) rotate(-40deg) translateY(-5px);
-        }
-      }
-      &:active {
-        background-color: darken(#9dd558, 30%);
-      }
-
-      span {
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 19px;
-      }
-      svg {
-        transition: 0.3s;
-        position: absolute;
-        right: 30px;
-        top: 21px;
-      }
-    }
   }
 }
