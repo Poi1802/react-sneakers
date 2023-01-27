@@ -1,0 +1,44 @@
+.card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #e9e6e6;
+  border-radius: 40px;
+  max-width: 210px;
+  position: relative;
+  transition: 0.2s;
+
+  &:hover {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+    transform: translateY(-5px);
+  }
+  &:not(:last-child) {
+    margin-right: auto;
+  }
+
+  .favorite {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    cursor: pointer;
+  }
+  .button {
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  span {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    color: #bdbdbd;
+  }
+  p {
+    margin-inline: 28px;
+  }
+  b {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
