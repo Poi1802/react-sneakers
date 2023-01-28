@@ -2,27 +2,40 @@ import React from "react";
 
 import { card, favorite, button } from "./Card.module.scss";
 
-const Card = ({ title, price, imageUrl, onPlus, onCheck }) => {
+const Card = ({
+  title,
+  price,
+  imageUrl,
+  onPlus,
+  onAddToFavorite,
+  removeFromFavorite,
+  isLiked,
+}) => {
   const [checked, setChecked] = React.useState(false);
-  const [liked, setLiked] = React.useState(false);
+  const [liked, setLiked] = React.useState(isLiked);
 
   const onClickPlus = () => {
     setChecked(!checked);
     if (checked === false) {
       onPlus({ title, price, imageUrl });
-    } else {
-      // onCheck(id);
-      // console.log(id);
     }
   };
-  const onSelectLike = () => {
+
+  const onClickHeart = () => {
     setLiked(!liked);
+
+    if (liked === false) {
+      onAddToFavorite({ title, price, imageUrl });
+    } else {
+      removeFromFavorite(title);
+    }
   };
 
   return (
     <div className={card}>
-      <div className={favorite} onClick={onSelectLike}>
+      <div className={favorite}>
         <img
+          onClick={onClickHeart}
           src={liked ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"}
           alt="heart"
         />
