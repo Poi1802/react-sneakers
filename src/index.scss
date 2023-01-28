@@ -54,25 +54,31 @@ header {
 
 .content {
   padding-inline: 60px;
-}
 
-.content__header {
-  margin: 40px 0;
-  h1 {
-    margin: 0;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 39px;
-  }
-  input {
-    border: none;
-    color: #c4c4c4;
-    opacity: 0.5;
-  }
-  .searchBlock {
-    border: 1px solid #f3f3f3;
-    border-radius: 10px;
-    min-width: 250px;
-    min-height: 44px;
+  .contentHeader {
+    margin: 40px 0;
+    h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 39px;
+    }
+    input {
+      border: none;
+    }
+    .searchBlock {
+      border: 1px solid #f3f3f3;
+      border-radius: 10px;
+      min-width: 250px;
+      min-height: 44px;
+      position: relative;
+
+      .removeBtn {
+        position: absolute;
+        right: 0;
+        width: 18px;
+        cursor: pointer;
+      }
+    }
   }
 }

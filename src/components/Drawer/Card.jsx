@@ -2,9 +2,9 @@ import React from "react";
 
 import { card, removeBtn } from "./Drawer.module.scss";
 
-const Card = ({ title, imageUrl, price, remove }) => {
+const Card = ({ title, imageUrl, price, id, removeFromCart }) => {
   const onClickRemove = () => {
-    remove({ title });
+    removeFromCart(id);
   };
 
   return (

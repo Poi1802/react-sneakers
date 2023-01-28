@@ -1,6 +1,6 @@
 import React from "react";
 
-import Card from "./CartCard";
+import Card from "./Card";
 
 import {
   overlay,
@@ -30,7 +30,7 @@ const Drawer = ({ onClose, items, removeItem }) => {
               <Card
                 key={obj.title}
                 {...obj}
-                remove={(title) => removeItem(title)}
+                removeFromCart={(id) => removeItem(id)}
               />
             ))}
         </div>
@@ -39,7 +39,7 @@ const Drawer = ({ onClose, items, removeItem }) => {
             <li className="mb-20">
               <span>Итого:</span>
               <div></div>
-              <b>21 498 руб.</b>
+              <b>12999 руб.</b>
             </li>
             <li>
               <span>Налог 5%:</span>

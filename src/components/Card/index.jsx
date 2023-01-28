@@ -2,7 +2,7 @@ import React from "react";
 
 import { card, favorite, button } from "./Card.module.scss";
 
-const Card = ({ title, price, imageUrl, onPlus, onCheck }) => {
+const Card = ({ title, price, imageUrl, onPlus }) => {
   const [checked, setChecked] = React.useState(false);
   const [liked, setLiked] = React.useState(false);
 
