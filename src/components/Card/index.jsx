@@ -2,16 +2,17 @@ import React from "react";
 
 import { card, favorite, button } from "./Card.module.scss";
 
-const Card = ({ title, price, imageUrl, onPlus }) => {
+const Card = ({ title, price, imageUrl, onPlus, onCheck }) => {
   const [checked, setChecked] = React.useState(false);
   const [liked, setLiked] = React.useState(false);
 
   const onClickPlus = () => {
     setChecked(!checked);
-    if (!checked) {
+    if (checked === false) {
       onPlus({ title, price, imageUrl });
     } else {
-      onCheck({ title });
+      // onCheck(id);
+      // console.log(id);
     }
   };
   const onSelectLike = () => {

@@ -17,12 +17,14 @@ function App() {
       .then(({ data }) => {
         setSneakers(data);
       });
+  }, []);
+  React.useEffect(() => {
     axios
       .get("https://63d359f28d4e68c14ea99e54.mockapi.io/cart")
       .then(({ data }) => {
         setCartItems(data);
       });
-  }, []);
+  }, [cartOpened]);
 
   const onAddToCart = (obj) => {
     axios.post("https://63d359f28d4e68c14ea99e54.mockapi.io/cart", obj);
@@ -81,6 +83,7 @@ function App() {
                 <Card
                   key={items.title}
                   {...items}
+                  onCheck={(id) => removeFromCart(id)}
                   onPlus={(obj) => onAddToCart(obj)}
                 />
               ))}
