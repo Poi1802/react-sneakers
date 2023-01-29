@@ -1,11 +1,12 @@
-import axios from "axios";
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import axios from 'axios';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import Drawer from "./components/Drawer";
-import Favorite from "./components/pages/Favorite";
-import Header from "./components/Header";
-import Home from "./components/pages/Home";
+import Drawer from './components/Drawer';
+import Favorite from './components/pages/Favorite';
+import Header from './components/Header';
+import Home from './components/pages/Home';
+import Orders from './components/pages/Orders';
 
 function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
@@ -14,22 +15,15 @@ function App() {
   const [sneakers, setSneakers] = React.useState([]);
 
   React.useEffect(() => {
-    axios
-      .get("https://63d359f28d4e68c14ea99e54.mockapi.io/items")
-      .then(({ data }) => {
-        setSneakers(data);
-      });
+    axios.get('https://63d359f28d4e68c14ea99e54.mockapi.io/items').then(({ data }) => {
+      setSneakers(data);
+    });
+    axios.get('https://63d359f28d4e68c14ea99e54.mockapi.io/cart').then(({ data }) => {
+      setCartItems(data);
+    });
   }, []);
-  React.useEffect(() => {
-    axios
-      .get("https://63d359f28d4e68c14ea99e54.mockapi.io/cart")
-      .then(({ data }) => {
-        setCartItems(data);
-      });
-  }, [cartOpened]);
 
   const onAddToFavorite = (obj) => {
-    console.log(favoriteItems);
     setFavoriteItems((prev) => [...prev, obj]);
   };
 
@@ -37,9 +31,13 @@ function App() {
     setFavoriteItems((prev) => prev.filter((item) => item.title !== title));
   };
 
-  const onAddToCart = (obj) => {
-    axios.post("https://63d359f28d4e68c14ea99e54.mockapi.io/cart", obj);
-    setCartItems((prev) => [...prev, obj]);
+  const onAddToCart = async (obj) => {
+    try {
+      const { data } = await axios.post('https://63d359f28d4e68c14ea99e54.mockapi.io/cart', obj);
+      setCartItems((prev) => [...prev, data]);
+    } catch (error) {
+      alert('Error');
+    }
   };
 
   const removeFromCart = (id) => {
@@ -48,11 +46,11 @@ function App() {
   };
 
   return (
-    <div className="wrapper clear">
+    <div className='wrapper clear'>
       {cartOpened && (
         <Drawer
           items={cartItems}
-          removeItem={(id) => removeFromCart(id)}
+          removeItem={removeFromCart}
           onClose={() => setCartOpened(false)}
         />
       )}
@@ -60,7 +58,7 @@ function App() {
 
       <Routes>
         <Route
-          path="/favorite"
+          path='/favorite'
           element={
             <Favorite
               items={favoriteItems}
@@ -71,8 +69,12 @@ function App() {
       </Routes>
 
       <Routes>
+        <Route path='/orders' element={<Orders />} />
+      </Routes>
+
+      <Routes>
         <Route
-          path="/"
+          path='/'
           element={
             <Home
               sneakers={sneakers}
