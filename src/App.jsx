@@ -41,8 +41,16 @@ function App() {
 
   const onAddToCart = async (obj) => {
     try {
+      setCartItems((prev) => [...prev, obj]);
       const { data } = await axios.post('https://63d359f28d4e68c14ea99e54.mockapi.io/cart', obj);
-      setCartItems((prev) => [...prev, data]);
+      setCartItems((prev) =>
+        prev.map((item) => {
+          return {
+            ...item,
+            id: data.id,
+          };
+        })
+      );
     } catch (error) {
       alert('Error');
     }
@@ -79,7 +87,7 @@ function App() {
         setOrderItems,
       }}>
       <div className='wrapper clear'>
-        {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
+        <Drawer items={cartItems} onClose={() => setCartOpened(false)} isOpened={cartOpened} />
         <Header onClickCart={() => setCartOpened(true)} />
         <Routes>
           <Route path='/favorite' element={<Favorite items={favoriteItems} />} />

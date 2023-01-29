@@ -6,6 +6,17 @@
   min-height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
+  visibility: hidden;
+  transition: 0.2s;
+  opacity: 0;
+  overflow: hidden;
+}
+.overlayVisible {
+  visibility: visible;
+  opacity: 1;
+  .drawer {
+    transform: translateX(0);
+  }
 }
 .drawer {
   display: flex;
@@ -17,6 +28,8 @@
   z-index: 1;
   background: #ffffff;
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: 0.4s;
 
   .cartItems {
     overflow: auto;

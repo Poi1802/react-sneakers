@@ -8,17 +8,19 @@ import Card from './Card';
 import {
   overlay,
   drawer,
-  cartItems,
   removeBtn,
   cartTotalBlock,
   greenButton,
+  overlayVisible,
 } from './Drawer.module.scss';
 
 const delay = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
-const Drawer = ({ onClose, items }) => {
+const Drawer = ({ onClose, items, isOpened }) => {
   const [isBought, setIsBought] = React.useState(false);
   const { setCartItems, cartItems, setOrderItems } = React.useContext(AppContext);
+
+  const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0);
 
   const onClickBuy = async () => {
     try {
@@ -37,7 +39,7 @@ const Drawer = ({ onClose, items }) => {
   };
 
   return (
-    <div className={overlay}>
+    <div className={`${overlay} ${isOpened ? overlayVisible : ''}`}>
       <div className={drawer}>
         <h2 className='d-flex justify-between mr-30'>
           Корзина <img className={removeBtn} onClick={onClose} src='/img/delete-cart.svg' alt='Delete' />
@@ -52,12 +54,12 @@ const Drawer = ({ onClose, items }) => {
                 <li className='mb-20'>
                   <span>Итого:</span>
                   <div></div>
-                  <b>12999 руб.</b>
+                  <b>{totalPrice} руб.</b>
                 </li>
                 <li>
                   <span>Налог 5%:</span>
                   <div></div>
-                  <b>1074 руб.</b>
+                  <b>{Math.round(totalPrice * 0.05)} руб.</b>
                 </li>
               </ul>
               <button onClick={onClickBuy} className={greenButton}>
