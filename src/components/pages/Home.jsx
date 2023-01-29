@@ -2,16 +2,7 @@ import React from 'react';
 
 import Card from '../Card';
 
-const Home = ({
-  sneakers,
-  onAddToFavorite,
-  cartItems,
-  favoriteItems,
-  onAddToCart,
-  removeFromCart,
-  removeFromFavorite,
-  loading,
-}) => {
+const Home = ({ sneakers, cartItems, favoriteItems, loading }) => {
   const [searchValue, setSearchValue] = React.useState('');
 
   const onChangeSearchInput = (event) => {
@@ -26,13 +17,8 @@ const Home = ({
     return (loading ? [...Array(8)] : filterItems).map((items, index) => (
       <Card
         key={index}
-        onPlus={onAddToCart}
-        cartItems={cartItems}
         added={cartItems.some((obj) => obj.title === items.title)}
         isLiked={favoriteItems.some((obj) => obj.title === items.title)}
-        onAddToFavorite={onAddToFavorite}
-        removeFromFavorite={removeFromFavorite}
-        removeFromCart={removeFromCart}
         loading={loading}
         {...items}
       />

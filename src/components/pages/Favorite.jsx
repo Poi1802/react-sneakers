@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import Card from '../Card';
 
-const Favorite = ({ items, removeFromFavorite, removeFromCart }) => {
+const Favorite = ({ items }) => {
   return (
     <div className='content'>
       <div className='contentHeader d-flex justify-between mb-30'>
@@ -16,16 +16,7 @@ const Favorite = ({ items, removeFromFavorite, removeFromCart }) => {
         </h1>
       </div>
       <div className='cards d-flex flex-wrap'>
-        {items &&
-          items.map((item) => (
-            <Card
-              key={`${item.title}_${item.index}`}
-              {...item}
-              isLiked
-              removeFromFavorite={(title) => removeFromFavorite(title)}
-              removeFromCart={removeFromCart}
-            />
-          ))}
+        {items && items.map((item) => <Card key={`${item.title}_${item.index}`} {...item} isLiked />)}
       </div>
     </div>
   );

@@ -1,35 +1,19 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
+import { AppContext } from '../../App';
 
 import { card, favorite, button } from './Card.module.scss';
 
-const Card = ({
-  id,
-  title,
-  price,
-  imageUrl,
-  cartItems,
-  onPlus,
-  onAddToFavorite,
-  removeFromFavorite,
-  removeFromCart,
-  added,
-  loading,
-  isLiked = false,
-}) => {
-  const [checked, setChecked] = React.useState(added);
+const Card = ({ id, title, price, imageUrl, loading, isLiked = false }) => {
+  const { isItemAdded, onAddToCart, removeFromCart, removeFromFavorite, onAddToFavorite } =
+    React.useContext(AppContext);
   const [liked, setLiked] = React.useState(isLiked);
 
-  React.useEffect(() => {
-    setChecked(added);
-  }, [added, cartItems]);
-
   const onClickPlus = () => {
-    setChecked(!checked);
-    if (checked === false) {
-      onPlus({ title, price, imageUrl });
+    if (isItemAdded(title) === false) {
+      onAddToCart({ title, price, imageUrl });
     } else {
-      removeFromCart(id);
+      removeFromCart(title);
     }
   };
 
@@ -37,7 +21,7 @@ const Card = ({
     setLiked(!liked);
 
     if (liked === false) {
-      onAddToFavorite({ title, price, imageUrl });
+      onAddToFavorite({ title, price, imageUrl, id });
     } else {
       removeFromFavorite(title);
     }
@@ -79,7 +63,7 @@ const Card = ({
             <img
               className={button}
               onClick={onClickPlus}
-              src={checked ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
+              src={isItemAdded(title) ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
               alt=''
             />
           </div>
