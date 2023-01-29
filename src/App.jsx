@@ -13,14 +13,19 @@ function App() {
   const [favoriteItems, setFavoriteItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
   const [sneakers, setSneakers] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    axios.get('https://63d359f28d4e68c14ea99e54.mockapi.io/items').then(({ data }) => {
-      setSneakers(data);
-    });
-    axios.get('https://63d359f28d4e68c14ea99e54.mockapi.io/cart').then(({ data }) => {
-      setCartItems(data);
-    });
+    async function fetchData() {
+      const cartResponse = await axios.get('https://63d359f28d4e68c14ea99e54.mockapi.io/cart');
+      const sneakersResponser = await axios.get('https://63d359f28d4e68c14ea99e54.mockapi.io/items');
+
+      setIsLoading(false);
+      setCartItems(cartResponse.data);
+      setSneakers(sneakersResponser.data);
+    }
+
+    fetchData();
   }, []);
 
   const onAddToFavorite = (obj) => {
@@ -48,11 +53,7 @@ function App() {
   return (
     <div className='wrapper clear'>
       {cartOpened && (
-        <Drawer
-          items={cartItems}
-          removeItem={removeFromCart}
-          onClose={() => setCartOpened(false)}
-        />
+        <Drawer items={cartItems} removeItem={removeFromCart} onClose={() => setCartOpened(false)} />
       )}
       <Header onClickCart={() => setCartOpened(true)} />
 
@@ -62,30 +63,30 @@ function App() {
           element={
             <Favorite
               items={favoriteItems}
+              sneakers={sneakers}
+              cartItems={cartItems}
               removeFromFavorite={(title) => removeFromFavorite(title)}
+              removeFromCart={removeFromCart}
             />
           }
         />
-      </Routes>
-
-      <Routes>
-        <Route path='/orders' element={<Orders />} />
-      </Routes>
-
-      <Routes>
         <Route
           path='/'
           element={
             <Home
               sneakers={sneakers}
+              cartItems={cartItems}
+              favoriteItems={favoriteItems}
               onAddToFavorite={onAddToFavorite}
               removeFromFavorite={removeFromFavorite}
               setCartItems={setCartItems}
               removeFromCart={removeFromCart}
               onAddToCart={onAddToCart}
+              loading={isLoading}
             />
           }
         />
+        <Route path='/orders' element={<Orders />} />
       </Routes>
     </div>
   );
