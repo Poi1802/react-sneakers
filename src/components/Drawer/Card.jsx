@@ -8,7 +8,7 @@ const Card = ({ title, imageUrl, price, id }) => {
   const { removeFromCart } = React.useContext(AppContext);
 
   const onClickRemove = () => {
-    removeFromCart(id);
+    removeFromCart(title);
   };
 
   return (

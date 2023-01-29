@@ -14,6 +14,7 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
   const [favoriteItems, setFavoriteItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
+  const [orderItems, setOrderItems] = React.useState([]);
   const [sneakers, setSneakers] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -65,7 +66,18 @@ function App() {
 
   return (
     <AppContext.Provider
-      value={{ isItemAdded, onAddToCart, removeFromCart, onAddToFavorite, removeFromFavorite }}>
+      value={{
+        isItemAdded,
+        onAddToCart,
+        removeFromCart,
+        onAddToFavorite,
+        removeFromFavorite,
+        setCartOpened,
+        setCartItems,
+        cartItems,
+        orderItems,
+        setOrderItems,
+      }}>
       <div className='wrapper clear'>
         {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
         <Header onClickCart={() => setCartOpened(true)} />
