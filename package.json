@@ -3,13 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://poi1802.github.io/react-sneakers/",
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "axios": "^1.2.5",
+    "gh-pages": "^5.0.0",
     "macro-css": "^1.0.5",
     "react": "^18.2.0",
     "react-content-loader": "^6.2.0",

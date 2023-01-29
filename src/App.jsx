@@ -90,9 +90,9 @@ function App() {
         <Drawer items={cartItems} onClose={() => setCartOpened(false)} isOpened={cartOpened} />
         <Header onClickCart={() => setCartOpened(true)} />
         <Routes>
-          <Route path='/favorite' element={<Favorite items={favoriteItems} />} />
+          <Route path='favorite' element={<Favorite items={favoriteItems} />} />
           <Route
-            path='/'
+            path=''
             element={
               <Home
                 sneakers={sneakers}
@@ -102,7 +102,7 @@ function App() {
               />
             }
           />
-          <Route path='/orders' element={<Orders />} />
+          <Route path='orders' element={<Orders />} />
         </Routes>
       </div>
     </AppContext.Provider>
